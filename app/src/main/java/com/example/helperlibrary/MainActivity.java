@@ -16,7 +16,9 @@ import com.example.mlayouthelper.Delegate;
 import com.example.mlayouthelper.ViewHelper;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,13 +57,13 @@ public class MainActivity extends AppCompatActivity {
         value.setHelloText("How are you?");
         value.editText = "I'm fine!";
         try {
-            ViewHelper.setActivityByClass(this, value);
+            ViewHelper.setActivityValuesByClass(this, value);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
         TestValue result;
         try {
-            result = (TestValue) ViewHelper.getClassByActivity(this,TestValue.class);
+            result = (TestValue) ViewHelper.getClassByActivityValues(this,TestValue.class);
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -91,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        Map<String, Object> map = new LinkedHashMap();
+        map.put("editText2","me too");
+        ViewHelper.setViewValuesByMap(this, map);
     }
 
     @Override

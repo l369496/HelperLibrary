@@ -48,7 +48,7 @@ public class ViewHelper {
      * @throws InstantiationException
      * @throws IllegalAccessException
      */
-    public static Object getClassByActivity(@NonNull Activity activity, @NonNull Class<?> type)
+    public static Object getClassByActivityValues(@NonNull Activity activity, @NonNull Class<?> type)
             throws InstantiationException, IllegalAccessException {
         final Object obj = type.newInstance();
         Set<Field> fields = getFields(type);
@@ -112,7 +112,7 @@ public class ViewHelper {
      * @param obj 数据对象
      * @throws IllegalAccessException
      */
-    public static void setActivityByClass(@NonNull Activity activity, @NonNull final Object obj) throws IllegalAccessException {
+    public static void setActivityValuesByClass(@NonNull Activity activity, @NonNull final Object obj) throws IllegalAccessException {
         Set<Field> fields = getFields(obj.getClass());
         selectViewsByField(activity, fields, new Delegate.Action2<View, Field>() {
             @Override
@@ -131,11 +131,11 @@ public class ViewHelper {
             }
         });
     }
-    public static <TValue> void selectViewsByName(@NonNull Activity activity, @NonNull final Map<String,TValue> map){
-        selectViewsByName(activity, map.keySet(), new Delegate.Action2<View, String>() {
+    public static <TValue> void setViewValuesByMap(@NonNull Activity activity, @NonNull final Map<String,TValue> nameValue){
+        selectViewsByName(activity, nameValue.keySet(), new Delegate.Action2<View, String>() {
             @Override
             public void invoke(View view, String name) {
-                setViewValue(view, map.get(name));
+                setViewValue(view, nameValue.get(name));
             }
         });
     }
