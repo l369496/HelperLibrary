@@ -1,0 +1,35 @@
+package com.flycloud.andsetvier;
+
+import com.yanzhenjie.andserver.annotation.GetMapping;
+import com.yanzhenjie.andserver.annotation.PathVariable;
+import com.yanzhenjie.andserver.annotation.PostMapping;
+import com.yanzhenjie.andserver.annotation.QueryParam;
+import com.yanzhenjie.andserver.annotation.RequestMapping;
+import com.yanzhenjie.andserver.annotation.RequestParam;
+import com.yanzhenjie.andserver.annotation.RestController;
+
+@RestController
+@RequestMapping(path = "/user")
+public class UserController {
+    @PostMapping("/login")
+    String login(@RequestParam("account") String account,
+        @RequestParam("password") String password){
+        if("123".equals(account) && "123".equals(password)) {
+            return "Login successful.";
+        } else {
+            return "Login failed.";
+        }
+    }
+    @GetMapping("/get")
+    String login(@RequestParam(value = "id", required = false, defaultValue = "123") String id) {
+        return String.valueOf(id)+" AndServer";
+    }
+    @GetMapping("/get/{id}")
+    String idInfo(@PathVariable("id") String id){
+        return String.valueOf(id)+" AndServer";
+    }
+    @GetMapping("/info")
+    String info(@QueryParam(name = "id") long id) {
+        return String.valueOf(id)+" AndServer";
+    }
+}
