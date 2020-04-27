@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Map<String, Object> map = new LinkedHashMap();
-        map.put("editText2","me too");
+        map.put("editText2", getExternalFilesDir("web").toString());
         ViewHelper.setViewValuesByMap(this, map);
         andServer = new ServerManager(getApplicationContext(), 8080);
         andServer.startServer();

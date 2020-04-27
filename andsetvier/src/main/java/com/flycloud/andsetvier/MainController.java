@@ -7,15 +7,16 @@ import com.yanzhenjie.andserver.annotation.ResponseBody;
 @Controller
 public class MainController {
 
-    @ResponseBody
-    @GetMapping("/index")
+    @GetMapping(value = "/index")
     public String index(){
-        return "Welcome to my webSite!";
+        return PathManager.getRelativeWebMainIndex();
     }
+
     @GetMapping("/")
     public String main(){
         return "redirect:/index";
     }
+
     @ResponseBody
     @GetMapping("/project/info")
     public String newInfo() {

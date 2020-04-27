@@ -6,7 +6,10 @@ import android.util.Log;
 import com.flycloud.utils.SystemInfo;
 import com.yanzhenjie.andserver.AndServer;
 import com.yanzhenjie.andserver.Server;
+import com.yanzhenjie.andserver.framework.website.StorageWebsite;
+import com.yanzhenjie.andserver.framework.website.Website;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.util.concurrent.TimeUnit;
 
@@ -18,7 +21,14 @@ public class ServerManager {
      */
     public ServerManager(Context context, int port) {
         final InetAddress inetAddress = SystemInfo.getFirstLocalIp4Address();
-        UserController userController = new UserController();
+
+        PathManager.setRootDir(context);
+        HtmlManager htmlManager = new HtmlManager();
+        try {
+            htmlManager.init();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         mServer = AndServer.webServer(context)
                 .inetAddress(inetAddress)
