@@ -30,18 +30,20 @@ public class PathManager {
         return file.getAbsolutePath();
     }
 
-    public static String mkdirs(String path){
-        File file = new File(path);
+    public static String mkWebChildDirs(String childPath){
+        File file = new File(getWebDir(), childPath);
         if(!file.exists())
             file.mkdirs();
-        return path;
+        return file.getAbsolutePath();
     }
 
-    public static String getWebMainIndex() {
-        return mkdirs(getWebDir() + main) + index + suffix;
-    }
+    public static String getWebMainIndex() { return mkWebChildDirs(main) + index + suffix; }
 
     public static String getRelativeWebMainIndex(){
         return main + index;
     }
+
+    public static String getTest(){ return mkWebChildDirs("test") + "/test.html"; }
+
+    public static String getRelativeTest() { return "/test/test"; }
 }
