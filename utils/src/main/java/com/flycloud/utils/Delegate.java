@@ -1,13 +1,11 @@
 package com.flycloud.utils;
 
-import java.net.InetAddress;
-
 public interface Delegate {
     interface Action {
         void invoke();
     }
     interface Action1<T> {
-        InetAddress invoke(T t);
+        void invoke(T t);
     }
     interface Action2<T1, T2> {
         void invoke(T1 t1, T2 t2);
